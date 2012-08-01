@@ -1,20 +1,20 @@
 package com.epam.rest.impl;
 
-import com.epam.rest.ResponseProcessor;
 import com.epam.rest.RestCommand;
 import com.epam.rest.RestCommandFactory;
 import com.epam.rest.RestCommandPerformer;
+import com.epam.rest.RestEntityProcessor;
 import com.epam.rest.RestService;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class DefaultAdapterService<T> implements RestService<T> {
+public class DefaultRestService<T> implements RestService<T> {
 
     protected RestCommandPerformer commandPerformer;
     protected RestCommandFactory commandFactory;
-    protected ResponseProcessor<T> responseProcessor;
+    protected RestEntityProcessor<T> responseProcessor;
 
-    public DefaultAdapterService() {
+    public DefaultRestService() {
         init();
     }
 
@@ -28,7 +28,7 @@ public class DefaultAdapterService<T> implements RestService<T> {
         T result = null;
         String responseText = commandPerformer.perfomCommand(command);
         if (StringUtils.isNotBlank(responseText)) {
-            result = responseProcessor.process(responseText);
+            result = responseProcessor.deserialize(responseText);
         }
         return result;
     }
@@ -39,7 +39,7 @@ public class DefaultAdapterService<T> implements RestService<T> {
     }
 
     @Override
-    public ResponseProcessor<T> getResponseProcessor() {
+    public RestEntityProcessor<T> getResponseProcessor() {
         return responseProcessor;
     }
 
@@ -56,7 +56,7 @@ public class DefaultAdapterService<T> implements RestService<T> {
         this.commandFactory = commandFactory;
     }
 
-    public void setResponseProcessor(ResponseProcessor<T> responseProcessor) {
+    public void setResponseProcessor(RestEntityProcessor<T> responseProcessor) {
         this.responseProcessor = responseProcessor;
     }
 

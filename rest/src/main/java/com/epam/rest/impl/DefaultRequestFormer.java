@@ -44,7 +44,7 @@ public class DefaultRequestFormer implements RequestFormer {
     }
 
     public void fillParams(String params) {
-        if (request instanceof HttpEntityEnclosingRequestBase) {
+        if (params != null && request instanceof HttpEntityEnclosingRequestBase) {
             HttpEntityEnclosingRequestBase entityRequest = (HttpEntityEnclosingRequestBase) request;
             try {
                 HttpEntity entity = new StringEntity(params);

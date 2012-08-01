@@ -4,7 +4,7 @@ public interface RestService<T> {
 
     RestCommandPerformer getCommandPerformer();
 
-    ResponseProcessor<T> getResponseProcessor();
+    RestEntityProcessor<T> getResponseProcessor();
 
     RestCommandFactory getCommandFactory();
 

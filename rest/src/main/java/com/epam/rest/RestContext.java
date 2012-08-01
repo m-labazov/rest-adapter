@@ -21,4 +21,8 @@ public interface RestContext {
 
     void addParam(String name, Object param);
 
+    String getRootUrl();
+
+    Object getParam(String string);
+
 }

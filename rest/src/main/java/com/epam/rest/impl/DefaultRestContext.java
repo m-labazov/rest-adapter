@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class DefaultRestContext implements RestContext {
 
+    protected String rootUrl;
     protected List<String> errors;
     protected List<String> logRecords;
     protected Map<String, Object> params;
@@ -57,6 +58,20 @@ public class DefaultRestContext implements RestContext {
     @Override
     public Map<String, Object> getParams() {
         return params;
+    }
+
+    @Override
+    public String getRootUrl() {
+        return rootUrl;
+    }
+
+    public void setRootUrl(String rootUrl) {
+        this.rootUrl = rootUrl;
+    }
+
+    @Override
+    public Object getParam(String name) {
+        return params.get(name);
     }
 
 }
