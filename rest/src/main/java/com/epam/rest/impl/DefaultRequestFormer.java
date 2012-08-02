@@ -26,6 +26,16 @@ public class DefaultRequestFormer implements RequestFormer {
     protected HttpRequestBase request;
     protected boolean securedRequest = true;
 
+    public DefaultRequestFormer() {
+    }
+
+    public DefaultRequestFormer(String rootUrl, String urlSuffix, Map<String, String> headers, String params) {
+        this.rootUrl = rootUrl;
+        this.urlSuffix = urlSuffix;
+        this.headers = headers;
+        this.params = params;
+    }
+
     public void fillHeader(HttpRequestBase request) {
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             request.addHeader(entry.getKey(), entry.getValue());

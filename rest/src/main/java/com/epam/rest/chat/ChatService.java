@@ -13,4 +13,11 @@ public class ChatService<T> extends DefaultRestService<T> {
         return result;
     }
 
+    public T create(Object entity, RestContext context) {
+        context.addParam("enity", entity);
+        RestCommand command = commandFactory.createCommand(ChatCommand.CREATE.name(), context);
+        T result = execute(command);
+        return result;
+    }
+
 }
